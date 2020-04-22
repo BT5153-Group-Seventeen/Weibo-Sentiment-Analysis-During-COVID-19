@@ -44,4 +44,11 @@ Repost info and user info will be scraped.
 See reference: https://github.com/CUHKSZ-TQL/WeiboSpider_SentimentAnalysis
 
 ## Sentiment Prediction
+Since the data we crawled is unlabeled, traditional supervised learning cannot be applied. Here we applied four methods to solve this problem: ```SnowNLP```, ```Re-trained SnowNLP on 5,000,000 Weibo Corpus```, ```Dictionary Matching```, and ```Supervised Learning based on small proportion of total data```.
 ### Basic SnowNLP
+Code: ```Model1_Basic_Snownlp.ipynb```
+Data: ```df_final.csv```
+This model is built directly on original SnowNLP (you just need to download package and import it without any adjustment). 
+### Re-trained SnowNLP
+Code:
+Data:
