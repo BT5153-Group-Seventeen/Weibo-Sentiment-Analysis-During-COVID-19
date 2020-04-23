@@ -4,17 +4,25 @@ In order to analyze the sentiment orientation on Chinese social platform, our gr
 ## Data Crawling
 We applied a ready-made package "WeiboSpider" to crawl data. For package, please refer to the Folder "WeiboSpider".
 
-1. Install Dependencies
-mongodb (you need to create database `Sina`)
-phantomjs
-redis
-requirements.txt
+1. Install Dependencies  
 
-2. Construct Account Pool:
-You can buy some Weibo accounts, paste them in txt file `WeiboSpider/sina/account_build/account.txt`.
+mongodb (you need to create database `Sina`)  
 
-3. Customize the retrieval criteria
-You change the dates, keyword, and filter (sort='hot'/'time') in `WeiboSpider/sina/redis_init.py` to crawl data you needed.
+phantomjs  
+
+redis  
+
+requirements.txt  
+
+
+2. Construct Account Pool:  
+
+You can buy some Weibo accounts, paste them in txt file `WeiboSpider/sina/account_build/account.txt`.  
+
+3. Customize the retrieval criteria  
+
+You change the dates, keyword, and filter (sort='hot'/'time') in `WeiboSpider/sina/redis_init.py` to crawl data you needed.  
+
 ```
 url_format = "https://weibo.cn/search/mblog?hideSearchFrame=&keyword={}&advancedfilter=1&starttime={}&endtime={}&sort=hot&page=1"
 # keyword for searching
@@ -24,8 +32,10 @@ date_start = datetime.datetime.strptime("2020-01-20", '%Y-%m-%d')
 # enddate for crawling
 date_end = datetime.datetime.strptime("2020-03-09", '%Y-%m-%d')
 time_spread = datetime.timedelta(days=1)
-```
-4. Start Crawling
+```  
+
+4. Start Crawling  
+
 Mac User:  
 
 Windows User: For windows user, since there are some commands in crawling codes written by linux language, you are strongly suggested to use Ubuntu or virtual machines for crawling.  
