@@ -26,8 +26,10 @@ date_end = datetime.datetime.strptime("2020-03-09", '%Y-%m-%d')
 time_spread = datetime.timedelta(days=1)
 ```
 4. Start Crawling
-Mac User:
-Windows User: For windows user, since there are some commands in crawling codes written by linux language, you are strongly suggested to use Ubuntu or virtual machines for crawling. 
+Mac User:  
+
+Windows User: For windows user, since there are some commands in crawling codes written by linux language, you are strongly suggested to use Ubuntu or virtual machines for crawling.  
+
 ```
 $ redis-server
 $ cd /mnt/c/users/asus/documents/github/WeiboSpider (please change to your own path)
@@ -35,8 +37,9 @@ $ python sina/account_build/login.py (login all your weibo accounts in accounts 
 $ python sina/redis_init.py (crawling criteria update)
 $ cd /mnt/c/users/asus/documents/github/WeiboSpider/sina/spiders (please change to your own path)
 $ scrapy runspider weibo_spider.py
-```
-You can open several severs to crawl in parallel.
+```  
+
+You can open several severs to crawl in parallel.  
 
 5. Final Database in MongoDB
 Repost info and user info will be scraped.
@@ -46,13 +49,18 @@ See reference: https://github.com/CUHKSZ-TQL/WeiboSpider_SentimentAnalysis
 ## Sentiment Prediction
 Since the data we crawled is unlabeled, traditional supervised learning cannot be applied. Here we applied four methods to solve this problem: ```SnowNLP```, ```Re-trained SnowNLP on 5,000,000 Weibo Corpus```, ```Dictionary Matching```, and ```Supervised Learning based on small proportion of total data```.
 ### Basic SnowNLP
-Code: ```Model1_Basic_SnowNLP.ipynb```
-Data: ```df_final.csv```
-This model is built directly on original SnowNLP (you just need to download package and import it without any adjustment). 
+Code: ```Model1_Basic_SnowNLP.ipynb```  
+
+Data: ```df_final.csv```  
+
+This model is built directly on original SnowNLP (you just need to download package and import it without any adjustment).  
+
 ### Re-trained SnowNLP
-Code: ```Model2_Re-trained_SnowNLP.ipynb```
+Code: ```Model2_Re-trained_SnowNLP.ipynb```  
+
 Data: ```5,000,000 Weibo Comments```,```df_final.csv```  
-Corpus and Retrained Marshal: ``````
+
+Corpus and Retrained Marshal: ```sentiment.marshal.3```  
 
 This model is trained on 5,000,000 Weibo comments. The training process will take about 25 hours in total. You can skip the training process by directly call sentiment.marshal retrained. You also need to change ```snownlp\sentiment\__init__.py``` as follows:  
 
@@ -90,5 +98,16 @@ class Sentiment(object):
 See reference: https://zhuanlan.zhihu.com/p/30061051, https://blog.csdn.net/weixin_42007766/article/details/89824318  
 
 ### Dictionary Matching Method
-Code: ```Model2_Re-trained_SnowNLP.ipynb```
-Data: ```5,000,000 Weibo Comments```,```df_final.csv```
+Code: ```Model3_jieba_sentiment.ipynb```   
+
+Data: ```df_final.csv```  
+(Since the dictionaries are confidential, you can go to the following website link to request perssion from this author)  
+
+See reference: https://blog.csdn.net/qq_41185868/article/details/84864905#comments
+
+### Machine Learning Models based on Labeled 3000 reposts
+Code: ```Model4_based on labeled data .ipynb```   
+
+Data: ```random_3000_with_label.csv```  
+
+(Please note that results of this model are used for visualization)
