@@ -36,8 +36,15 @@ time_spread = datetime.timedelta(days=1)
 
 4. Start Crawling  
 
-Mac User:  
-
+Mac User:  For Mac users, please enter the following code.
+```
+$ redis-server
+$ cd ~/Documents/WeiboSpider (please change to your own path)
+$ python sina/account_build/login.py (login all your weibo accounts in accounts pool)
+$ python sina/redis_init.py (crawling criteria update)
+$ cd ~/sina/spiders (please change to your own path)
+$ python weibo_spider.py
+```
 Windows User: For windows user, since there are some commands in crawling codes written by linux language, you are strongly suggested to use Ubuntu or virtual machines for crawling.  
 
 ```
@@ -52,7 +59,7 @@ $ scrapy runspider weibo_spider.py
 You can open several severs to crawl in parallel.  
 
 5. Final Database in MongoDB
-Repost info and user info will be scraped.
+Repost info and user info will be scraped. Data can be accessed by MongoDB Compass.For connection, please use mongodb://localhost.
 
 See reference: https://github.com/CUHKSZ-TQL/WeiboSpider_SentimentAnalysis
 
