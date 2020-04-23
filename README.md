@@ -46,9 +46,49 @@ See reference: https://github.com/CUHKSZ-TQL/WeiboSpider_SentimentAnalysis
 ## Sentiment Prediction
 Since the data we crawled is unlabeled, traditional supervised learning cannot be applied. Here we applied four methods to solve this problem: ```SnowNLP```, ```Re-trained SnowNLP on 5,000,000 Weibo Corpus```, ```Dictionary Matching```, and ```Supervised Learning based on small proportion of total data```.
 ### Basic SnowNLP
-Code: ```Model1_Basic_Snownlp.ipynb```
+Code: ```Model1_Basic_SnowNLP.ipynb```
 Data: ```df_final.csv```
 This model is built directly on original SnowNLP (you just need to download package and import it without any adjustment). 
 ### Re-trained SnowNLP
-Code:
-Data:
+Code: ```Model2_Re-trained_SnowNLP.ipynb```
+Data: ```5,000,000 Weibo Comments```,```df_final.csv```  
+Corpus and Retrained Marshal: ``````
+
+This model is trained on 5,000,000 Weibo comments. The training process will take about 25 hours in total. You can skip the training process by directly call sentiment.marshal retrained. You also need to change ```snownlp\sentiment\__init__.py``` as follows:  
+
+```
+import os
+import codecs
+import jieba
+
+from .. import normal
+# from .. import seg
+from ..classification.bayes import Bayes
+
+# data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+#                        'sentiment.marshal')
+
+data_path = 'D:\MSBA\Semester_2\BT5153\Group Project\sentiment.marshal' 
+# download the retrained sentiment.marshal and change call path here
+
+class Sentiment(object):
+
+    def __init__(self):
+        self.classifier = Bayes()
+
+    def save(self, fname, iszip=True):
+        self.classifier.save(fname, iszip)
+
+    def load(self, fname=data_path, iszip=True):
+        self.classifier.load(fname, iszip)
+
+    def handle(self, doc):
+        words = jieba.lcut(doc) ## pleace word splitting method by Jieba
+        words = normal.filter_stop(words)
+        return words
+```  
+See reference: https://zhuanlan.zhihu.com/p/30061051, https://blog.csdn.net/weixin_42007766/article/details/89824318  
+
+### Dictionary Matching Method
+Code: ```Model2_Re-trained_SnowNLP.ipynb```
+Data: ```5,000,000 Weibo Comments```,```df_final.csv```
