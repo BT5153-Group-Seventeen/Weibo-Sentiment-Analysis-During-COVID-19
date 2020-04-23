@@ -48,14 +48,14 @@ See reference: https://github.com/CUHKSZ-TQL/WeiboSpider_SentimentAnalysis
 
 ## Sentiment Prediction
 Since the data we crawled is unlabeled, traditional supervised learning cannot be applied. Here we applied four methods to solve this problem: ```SnowNLP```, ```Re-trained SnowNLP on 5,000,000 Weibo Corpus```, ```Dictionary Matching```, and ```Supervised Learning based on small proportion of total data```.
-### Basic SnowNLP
+#### Basic SnowNLP
 Code: ```Model1_Basic_SnowNLP.ipynb```  
 
 Data: ```df_final.csv```  
 
 This model is built directly on original SnowNLP (you just need to download package and import it without any adjustment).  
 
-### Re-trained SnowNLP
+#### Re-trained SnowNLP
 Code: ```Model2_Re-trained_SnowNLP.ipynb```  
 
 Data: ```5,000,000 Weibo Comments```,```df_final.csv```  
@@ -97,7 +97,7 @@ class Sentiment(object):
 ```  
 See reference: https://zhuanlan.zhihu.com/p/30061051, https://blog.csdn.net/weixin_42007766/article/details/89824318  
 
-### Dictionary Matching Method
+#### Dictionary Matching Method
 Code: ```Model3_jieba_sentiment.ipynb```   
 
 Data: ```df_final.csv```  
@@ -105,7 +105,7 @@ Data: ```df_final.csv```
 
 See reference: https://blog.csdn.net/qq_41185868/article/details/84864905#comments
 
-### Machine Learning Models based on Labeled 3000 reposts
+#### Machine Learning Models based on Labeled 3000 reposts
 Code: ```Model4_based on labeled data .ipynb```   
 
 Data: ```random_3000_with_label.csv```  
