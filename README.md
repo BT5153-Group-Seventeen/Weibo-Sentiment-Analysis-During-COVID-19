@@ -110,4 +110,9 @@ Code: ```Model4_based on labeled data .ipynb```
 
 Data: ```random_3000_with_label.csv```  
 
-(Please note that results of this model are used for visualization)
+(Please note that results of this model are used for visualization)  
+
+## Sentiment Visualization
+Code: ```Model_result_visualization.ipynb```   
+
+Data: ```user_all.csv```  
